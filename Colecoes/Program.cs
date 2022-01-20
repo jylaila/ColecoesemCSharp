@@ -1,4 +1,107 @@
-﻿using Colecoes.Helper;
+﻿using System.Collections.Generic;
+using Colecoes.Helper;
+
+//criando um dicionário
+//Dictionary<tipo da chave, tipo do valor>
+Dictionary<string, string> estado = new Dictionary<string, string>();
+
+//add elementos, as chaves não podem ser repetidas
+estado.Add("MG", "Minas-Gerais");
+estado.Add("SP", "São Paulo");
+estado.Add("BA", "Bahia");
+
+//percorrendo dicionario
+foreach (KeyValuePair<string, string> item in estado)
+{
+    System.Console.WriteLine($"Chave: {item.Key} Valor: {item.Value}");
+}
+
+//Acessando valores
+string busca = "BA";
+// estado[busca]; acessa o elemento pelo índice
+System.Console.WriteLine(estado[busca]);
+
+//Alterando valores
+estado[busca] = "Bahia Atualizado";
+
+//Removendo valor pela chave
+estado.Remove("BA");
+
+//acessando de forma segura
+if (estado.TryGetValue(busca, out string valorEncontrado))
+{
+    System.Console.WriteLine(valorEncontrado);
+}
+else
+{
+    System.Console.WriteLine("Não existe o estado procurado");
+}
+
+//criando uma pilha - LiFo - Last in first out
+Stack<String> pilha = new Stack<string>();
+
+//add elementos
+pilha.Push(".NET");
+pilha.Push("ODD");
+pilha.Push("Código Limpo");
+
+//percorrendo
+System.Console.WriteLine($"Livros disponíveis para leitura: {pilha.Count}");
+while (pilha.Count > 0)
+{
+    //ultimo elemento no topo
+    System.Console.WriteLine($"Próximo livro para leitura {pilha.Peek()}");
+    //remove elementos
+    System.Console.WriteLine($"{pilha.Pop()} lido com sucesso!");
+
+}
+System.Console.WriteLine($"Livros disponíveis para leitura: {pilha.Count}");
+
+//criando uma fila - FiFo - First in First out
+Queue<String> fila = new Queue<String>();
+
+//add elementos
+fila.Enqueue("Janaina");
+fila.Enqueue("Taylor");
+fila.Enqueue("Noah");
+
+//percorrer fila
+
+System.Console.WriteLine($"Pessoas na fila {fila.Count}");
+while (fila.Count > 0)
+{
+    System.Console.WriteLine($"Vez de {fila.Peek()}");
+    //remove o elemento e retorna
+    System.Console.WriteLine($"{fila.Dequeue()} atendido");
+}
+System.Console.WriteLine($"Pessoas na fila {fila.Count}");
+
+
+//criando coleção genérica
+List<String> estados = new List<string>();
+// List<String> estados = new List<string>{"SP", "MG"};
+//adicionando elementos
+estados.Add("SP");
+estados.Add("MG");
+estados.Add("BA");
+//acessando qt de elementos
+System.Console.WriteLine("Quantidade de elementos " + estados.Count);
+
+//acessando elementos
+OperacoesLista ol = new OperacoesLista();
+ol.imprimirLista(estados);
+
+//removendo elementos
+estados.Remove("MG");
+ol.imprimirLista(estados);
+
+//adicionando uma coleção a uma lista
+string[] estadoArray = { "SC", "MG" };
+estados.AddRange(estadoArray);
+ol.imprimirLista(estados);
+
+//adicionando em um índice específico
+estados.Insert(1, "RJ");
 
 //declarando um array de comprimento 3
 int[] arrayInteiros = new int[3];
@@ -35,13 +138,13 @@ for (int i = 0; i < matriz2.GetLength(0); i++)
 {
     for (int j = 0; j < matriz2.GetLength(1); j++)
     {
-        System.Console.WriteLine(matriz2[i,j]);
+        System.Console.WriteLine(matriz2[i, j]);
     }
 
 }
 
 //bubble sort
-int[] array = {3,6,8,1,9};
+int[] array = { 3, 6, 8, 1, 9 };
 OperacoesArray op = new OperacoesArray();
 
 op.OrdenarBubbleSort(array);
@@ -53,13 +156,13 @@ op.ImprimirArray(array);
 
 
 //copiar array
-int[] arrayOrigem = {3,4,56,7,8};
+int[] arrayOrigem = { 3, 4, 56, 7, 8 };
 int[] arrayDestino = new int[10];
 op.Copiar(arrayOrigem, arrayDestino);
 
 //verificar se elemento existe no array
 int x = 1;
-bool existe = op.Existe(array,x);
+bool existe = op.Existe(array, x);
 System.Console.WriteLine(existe);
 
 //verificar se todos elementos são maior que o valor
@@ -78,7 +181,7 @@ System.Console.WriteLine(indice);
 
 //redimensionar array
 System.Console.WriteLine("Capacidade atual:{0} ", array.Length);
-op.RedimensionarArray(ref array, array.Length*2);
+op.RedimensionarArray(ref array, array.Length * 2);
 System.Console.WriteLine("Capacidade redimensionada:{0} ", array.Length);
 
 //converter array int para array string
