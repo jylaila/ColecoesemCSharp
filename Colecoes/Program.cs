@@ -1,7 +1,33 @@
 ﻿using System.Collections.Generic;
 using Colecoes.Helper;
 
-//criando um dicionário
+
+/*Trabalhando com LINQ*/
+int[] arrayNumeros = { 1, 4, 8, 15, 19, 19 };
+
+//criar novo array somente com números pares
+//sintaxe de consulta
+var numerosParesConsulta = from numbers in arrayNumeros
+                   where numbers % 2 == 0
+                   orderby numbers
+                   select numbers;
+System.Console.WriteLine(string.Join("-",numerosParesConsulta));
+
+//sintaxe de método
+var numerosParesMetodo = arrayNumeros.Where(x=> x%2 == 0).OrderBy(x=>x).ToList();
+
+//Min, Máximo e Média com Linq
+var min = arrayNumeros.Min(); // retorna o valor mínimo
+var max = arrayNumeros.Max(); //retorna o valor máximo
+var media = arrayNumeros.Average(); //retorna a média dos valores
+
+//sum, distinct
+var soma = arrayNumeros.Sum(); //retorna a soma
+var arrayUnico = arrayNumeros.Distinct().ToArray(); //retorna elementos distintos de uma sequencia, convertido em array
+System.Console.WriteLine(string.Join(" - ", arrayUnico));
+
+
+/*criando um dicionário*/
 //Dictionary<tipo da chave, tipo do valor>
 Dictionary<string, string> estado = new Dictionary<string, string>();
 
@@ -37,7 +63,7 @@ else
     System.Console.WriteLine("Não existe o estado procurado");
 }
 
-//criando uma pilha - LiFo - Last in first out
+/*Criando uma pilha - LiFo - Last in first out*/
 Stack<String> pilha = new Stack<string>();
 
 //add elementos
@@ -57,7 +83,7 @@ while (pilha.Count > 0)
 }
 System.Console.WriteLine($"Livros disponíveis para leitura: {pilha.Count}");
 
-//criando uma fila - FiFo - First in First out
+/*criando uma fila - FiFo - First in First out*/
 Queue<String> fila = new Queue<String>();
 
 //add elementos
@@ -66,7 +92,6 @@ fila.Enqueue("Taylor");
 fila.Enqueue("Noah");
 
 //percorrer fila
-
 System.Console.WriteLine($"Pessoas na fila {fila.Count}");
 while (fila.Count > 0)
 {
@@ -77,7 +102,7 @@ while (fila.Count > 0)
 System.Console.WriteLine($"Pessoas na fila {fila.Count}");
 
 
-//criando coleção genérica
+/*criando coleção genérica*/
 List<String> estados = new List<string>();
 // List<String> estados = new List<string>{"SP", "MG"};
 //adicionando elementos
@@ -103,7 +128,7 @@ ol.imprimirLista(estados);
 //adicionando em um índice específico
 estados.Insert(1, "RJ");
 
-//declarando um array de comprimento 3
+/*Declarando um array de comprimento 3*/
 int[] arrayInteiros = new int[3];
 
 //atribuição
@@ -120,7 +145,7 @@ foreach (var item in arrayInteiros)
     System.Console.WriteLine(item);
 }
 
-//Array Multidimensional
+/*Array Multidimensional*/
 int[,] matriz = new int[4, 2];
 
 //atribuição
@@ -143,7 +168,7 @@ for (int i = 0; i < matriz2.GetLength(0); i++)
 
 }
 
-//bubble sort
+/*bubble sort*/
 int[] array = { 3, 6, 8, 1, 9 };
 OperacoesArray op = new OperacoesArray();
 
@@ -153,7 +178,6 @@ op.ImprimirArray(array);
 //sort da classe Array
 op.Ordenar(array);
 op.ImprimirArray(array);
-
 
 //copiar array
 int[] arrayOrigem = { 3, 4, 56, 7, 8 };
